@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8f9f9;
+  --foreground: #2c2d30;
+
+  --primary: #285ab8;
+  --primary-500: #285ab8;
+  --primary-foreground: white;
+
+  --secondary: #75c89b;
+  --secondary-foreground: white;
+
+  --accent: #5396e3;
+  --accent-foreground: white;
+
+  --muted: #8391ac;
+  --muted-foreground: #435266;
+
+  --card: white;
+  --card-foreground: #2c2d30;
+
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+
+  --ring: #285ab8;
+
+  --radius: 0.5rem;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.tanitim-wrapper {
+  background-color: var(--primary);
+  color: white;
+}
+
+.custom-sidebar {
+  background-color: white;
+}
+
+.cerez-table {
+  background-color: var(--primary);
+  color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  z-index: 50;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
