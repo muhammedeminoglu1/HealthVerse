@@ -70,7 +70,7 @@ export default function LoginContent() {
         <div className="flex flex-col items-center text-center mb-8">
           <h2 className="font-bold mb-2">NeyimVar Sistemine Nasıl Giriş Yaparım?</h2>
           <p className="w-full text-sm lg:w-4/6">
-            Sisteme girişte kimlik doğrulama google üxerinden yapılmaktdır.
+            Sisteme girişte kimlik doğrulama Google üzerinden yapılmaktadır.
           </p>
         </div>
 
