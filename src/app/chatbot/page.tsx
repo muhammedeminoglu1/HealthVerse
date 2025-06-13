@@ -2,27 +2,39 @@
 
 import { useState } from "react";
 
+async function sendMessage(message: string): Promise<string> {
+  try {
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message }),
+    });
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await res.json();
+    return data.reply as string;
+  } catch {
+    return "Bir hata oluştu.";
+  }
+}
+
 export default function ChatbotPage() {
   const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
   const [input, setInput] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
 
-    // Kullanıcının mesajını ekle
-    setMessages((prev) => [...prev, { sender: "user", text: input }]);
-
-    // Basit bir cevap oluştur (şu an sahte)
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        { sender: "user", text: input },
-        { sender: "bot", text: "Sorunuz için teşekkür ederim. Daha fazla bilgi almak ister misiniz?" },
-      ]);
-    }, 500);
-
+    const userMessage = input;
+    setMessages((prev) => [...prev, { sender: "user", text: userMessage }]);
     setInput("");
+
+    const botReply = await sendMessage(userMessage);
+    setMessages((prev) => [...prev, { sender: "bot", text: botReply }]);
   };
 
   return (
